@@ -18,7 +18,7 @@ desde Mage
 ## 1. Clonar el repositorio
 
 ```bash
-git clone https://github.com/Lhao13/PSet-1
+git clone https://github.com/Lhao13/PSet-2
 cd <repo>
 ```
 
