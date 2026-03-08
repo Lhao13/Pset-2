@@ -1,0 +1,91 @@
+version: 2
+
+models:
+  - name: fct_trips
+    description: Fact table containing taxi trip metrics
+
+    columns:
+      - name: pickup_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: dropoff_date_key
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: date_key
+
+      - name: pickup_time_key
+        tests:
+          - relationships:
+              to: ref('dim_time')
+              field: time_key
+
+      - name: dropoff_time_key
+        tests:
+          - relationships:
+              to: ref('dim_time')
+              field: time_key
+
+      - name: pickup_location_key
+        tests:
+          - relationships:
+              to: ref('dim_zone')
+              field: zone_key
+
+      - name: dropoff_location_key
+        tests:
+          - relationships:
+              to: ref('dim_zone')
+              field: zone_key
+
+      - name: payment_type_key
+        tests:
+          - relationships:
+              to: ref('dim_payment_type')
+              field: payment_type_key
+
+      - name: vendor_key
+        tests:
+          - relationships:
+              to: ref('dim_vendor')
+              field: vendor_key
+
+      - name: ratecode_key
+        tests:
+          - relationships:
+              to: ref('dim_ratecode')
+              field: ratecode_key
+      
+      - name: service_type_key
+        tests:
+          - relationships:
+              to: ref('dim_service_type')
+              field: service_type_key
+
+      - name: trip_distance
+        tests:
+          - not_null
+
+      - name: total_amount
+        tests:
+          - not_null
+
+      - name: passengers_count
+        tests:
+          - not_null
+
+    tests:
+
+      - dbt_utils.expression_is_true:
+          expression: "trip_distance >= 0"
+
+      - dbt_utils.expression_is_true:
+          expression: "total_amount >= 0"
+
+      - dbt_utils.expression_is_true:
+          expression: "passengers_count >= 0"

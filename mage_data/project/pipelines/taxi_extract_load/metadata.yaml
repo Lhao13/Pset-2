@@ -1,0 +1,67 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: grey
+  configuration:
+    dynamic: true
+    file_path: custom/data_generator.py
+    file_source:
+      path: custom/data_generator.py
+  downstream_blocks:
+  - data_impoter_exporter
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: data_generator
+  retry_config: null
+  status: executed
+  timeout: null
+  type: custom
+  upstream_blocks: []
+  uuid: data_generator
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    file_source:
+      path: transformers/data_impoter_exporter.py
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: data_impoter_exporter
+  retry_config: null
+  status: executed
+  timeout: null
+  type: transformer
+  upstream_blocks:
+  - data_generator
+  uuid: data_impoter_exporter
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config:
+  block_run_limit: 4
+  on_pipeline_run_limit_reached: skip
+  pipeline_run_limit: 1
+  pipeline_run_limit_all_triggers: 4
+conditionals: []
+created_at: '2026-02-18 01:21:23.229097+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: taxi_extract_load
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: true
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: taxi_extract_load
+variables_dir: /home/src/mage_data/project
+widgets: []

@@ -1,0 +1,2 @@
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "taxi_extract_load_copy"}, "timestamp": 1771984206, "user": 1}
+{"operation": "create", "resource": {"type": "pipeline", "uuid": "silver"}, "timestamp": 1771986106, "user": 1}

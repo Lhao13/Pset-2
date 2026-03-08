@@ -1,0 +1,17 @@
+# https://docs.getdbt.com/docs/core/connect-data-platform/profiles.yml
+
+project_transformation:
+  outputs:
+
+    dev:
+      type: postgres
+      host: postgres_2
+      user: root
+      password: root
+      port: 5432
+      dbname: source
+      schema: analytics
+      threads: 20
+      
+
+  target: dev

@@ -1,0 +1,8 @@
+sources:
+    - name: origen
+      schema: raw
+      tables:
+        - name: taxi_trips
+          description: "Esta tabla contiene todos los datos de viaje de NYC 2022-2025"
+        - name: zones
+          description: "Esta tabla contiene las zonas de ubicacion geografica de servicio de taxis de NYC"

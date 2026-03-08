@@ -1,0 +1,83 @@
+version: 2
+
+models:
+  - name: int_taxi_trips_zones_joined
+    description: "Tabla intermedia que une viajes con zonas enriquecidas"
+
+    columns:
+
+      - name: pickup_ts
+        description: "Timestamp de recogida"
+        tests:
+          - not_null
+
+      - name: dropff_ts
+        description: "Timestamp de llegada"
+        tests:
+          - not_null
+
+      - name: pickup_location
+        description: "Zona de recogida"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_zones')
+              field: location_id
+
+      - name: dropff_location
+        description: "Zona de destino"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_zones')
+              field: location_id
+
+      - name: passengers_count
+        description: "Número de pasajeros"
+        tests:
+          - not_null
+          - accepted_values:
+              values: [0,1,2,3,4,5,6,7,8,9,10]
+
+      - name: trip_distance
+        description: "Distancia del viaje"
+        tests:
+          - not_null
+
+      - name: total_amount
+        description: "Monto total del viaje"
+        tests:
+          - not_null
+
+      - name: service_type
+        description: "Tipo de taxi"
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['yellow','green']
+
+      - name: source_month
+        description: "Mes de origen"
+        tests:
+          - not_null
+      
+      - name: vendor_id
+        description: "Id del provedor"
+        tests:
+          - not_null
+
+      - name: payment_type
+        description: "tipo de pago"
+        tests:
+          - not_null
+  
+    tests:
+
+      - dbt_utils.expression_is_true:
+          expression: "pickup_ts <= dropff_ts"
+
+      - dbt_utils.expression_is_true:
+          expression: "trip_distance >= 0"
+
+      - dbt_utils.expression_is_true:
+          expression: "total_amount >= 0"

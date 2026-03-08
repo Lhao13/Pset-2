@@ -1,0 +1,52 @@
+
+
+services:
+  postgres_2:
+    image: postgres:15
+    container_name: postgres_2
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: source
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      # Cambiamos el nombre por una ruta relativa ./
+      - ./postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - mage_network
+
+  pgadmin_2:
+    image: dpage/pgadmin4
+    container_name: pgadmin_2
+    restart: unless-stopped
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - postgres_2
+    networks:
+      - mage_network
+
+  mage_2:
+    image: mageai/mageai
+    container_name: mage_2
+    restart: unless-stopped
+    command: mage start project
+    ports:
+      - "6789:6789"
+    volumes:
+      # Cambiamos el nombre por una ruta relativa ./
+      - ./mage_data:/home/src
+    depends_on:
+      - postgres_2
+    networks:
+      - mage_network
+
+networks:
+  mage_network:
+    driver: bridge
+
