@@ -555,7 +555,7 @@ Reglas de validación aplicadas:
    - La distancia y el monto total deben ser mayores o iguales a cero.
 
 #### Resultado de `dbt test`:
-![Evidencia de dbt tests exitosos](imagen\captura.png)
+![Evidencia de dbt tests exitosos](imagen/captura.png)
 
 ### Resumen de validaciones en fct_trips (Gold):
 - Integridad Referencial (Relationships): Se verifica que cada registro de viaje esté correctamente vinculado a sus dimensiones conformadas:
