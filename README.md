@@ -169,7 +169,7 @@ Bronce (parcial)
 |green           |2022-05     |76891           |loaded|
 |yellow          |2022-05     |3588295         |loaded|
 
-Silver
+Silver(parcial)
 
 |service_type    |source_month|count           |status|
 |----------------|------------|----------------|------|
@@ -186,6 +186,7 @@ Silver
 
 
 
+Las tablas completas son `bronce-dates.csv` y `silver-dates.csv` hay se visualiza todos los cambios echos a la data y como se subio completamente
 
 
 # 3) Levantar el proyecto
@@ -391,7 +392,7 @@ Se crean 7 dimensiones para nuestro modelo oro:
 |dim_vendor           |Estándar         |Identificación del proveedor del servicio..  |
 |dim_ratecode         |Estándar         |Identificación del codigo de calificacion    |
 
-Un documento de los taxis de NYC redacta el significado de algunos de los campos utilizados para las dimensiones de la tabla
+Un documento de los taxis de NYC redacta el significado de algunos de los campos utilizados para las dimensiones de la tabla. De esta manera podermos ahorra tiempo en la construccion de ciertas tablas y las particiones tiene especificaciones que pueden ser interpretadas por cualquiera
 
 ```bash
 /data_dictionary_trip_records_yellow.pdf
@@ -526,7 +527,7 @@ Resultados:
 "Planning Time: 1.616 ms"
 "Execution Time: 4252.389 ms"
 ```
-El tiempo de ejecucion es muy pequeño de solo 4 segundos. Para una tabla con 160 millones de registros evidencia que el tiempo es corto(Esto se evidencia en los test de llamadas donde las llamadas que incluyen una particion no toman menos de 3 minutos)
+El tiempo de ejecucion es muy pequeño de solo 4 segundos. Para una tabla con 160 millones de registros evidencia que el tiempo es corto(Esto se evidencia en los test de llamadas donde las llamadas que incluyen una particion no toman menos de 3 minutos). Los documentos que comprueban esto son `taxi_analysis.ipynb` y `evidencias_graficas.docx (contiene las llamadas directamente en SQL)`
 
 #  8) DBT
 
