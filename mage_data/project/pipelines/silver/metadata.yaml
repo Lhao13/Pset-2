@@ -1,0 +1,62 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt_project_name: dbt/project_transformation
+    file_path: dbt/project_transformation/models/silver/int_taxi_trips_zones_joined.sql
+    file_source:
+      path: dbt/project_transformation/models/silver/int_taxi_trips_zones_joined.sql
+      project_path: dbt/project_transformation
+  downstream_blocks:
+  - gold_trigger
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: sql
+  name: int_taxi_trips_zones_joined
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: dbt
+  upstream_blocks: []
+  uuid: dbt/project_transformation/models/silver/int_taxi_trips_zones_joined
+- all_upstream_blocks_executed: false
+  color: grey
+  configuration: {}
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: gold_trigger
+  retry_config: null
+  status: updated
+  timeout: null
+  type: custom
+  upstream_blocks:
+  - dbt/project_transformation/models/silver/int_taxi_trips_zones_joined
+  uuid: gold_trigger
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2026-03-09 01:15:47.803356+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: silver
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+uuid: silver
+variables_dir: /home/src/mage_data/project
+widgets: []

@@ -31,7 +31,7 @@ blocks:
   language: python
   name: data_impoter_exporter
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
   type: transformer
   upstream_blocks:

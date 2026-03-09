@@ -1,0 +1,12 @@
+project_transformation:
+  outputs:
+    dev:
+      dbname: source
+      host: postgres_2
+      password: root
+      port: 5432
+      schema: analytics
+      threads: 20
+      type: postgres
+      user: root
+  target: dev

@@ -7,15 +7,14 @@ blocks:
     file_source:
       path: dbt/project_transformation/models/bronze/stg_taxi_trips.sql
       project_path: dbt/project_transformation
-  downstream_blocks:
-  - dbt/project_transformation/models/silver/int_taxi_trips_zones_joined
+  downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
   language: sql
   name: stg_taxi_trips
   retry_config: null
-  status: updated
+  status: failed
   timeout: null
   type: dbt
   upstream_blocks: []
@@ -29,7 +28,7 @@ blocks:
       path: dbt/project_transformation/models/bronze/stg_zones.sql
       project_path: dbt/project_transformation
   downstream_blocks:
-  - dbt/project_transformation/models/silver/int_taxi_trips_zones_joined
+  - silver_trigger
   executor_config: null
   executor_type: local_python
   has_callback: false
@@ -42,47 +41,21 @@ blocks:
   upstream_blocks: []
   uuid: dbt/project_transformation/models/bronze/stg_zones
 - all_upstream_blocks_executed: false
-  color: null
-  configuration:
-    dbt_project_name: dbt/project_transformation
-    file_path: dbt/project_transformation/models/silver/int_taxi_trips_zones_joined.sql
-    file_source:
-      path: dbt/project_transformation/models/silver/int_taxi_trips_zones_joined.sql
-      project_path: dbt/project_transformation
+  color: grey
+  configuration: {}
   downstream_blocks: []
   executor_config: null
   executor_type: local_python
   has_callback: false
-  language: sql
-  name: int_taxi_trips_zones_joined
+  language: python
+  name: silver_trigger
   retry_config: null
-  status: executed
+  status: updated
   timeout: null
-  type: dbt
+  type: custom
   upstream_blocks:
-  - dbt/project_transformation/models/bronze/stg_taxi_trips
   - dbt/project_transformation/models/bronze/stg_zones
-  uuid: dbt/project_transformation/models/silver/int_taxi_trips_zones_joined
-- all_upstream_blocks_executed: true
-  color: null
-  configuration:
-    dbt_project_name: dbt/project_transformation
-    file_path: dbt/project_transformation/models/gold/dims/dim_date.sql
-    file_source:
-      path: dbt/project_transformation/models/gold/dims/dim_date.sql
-      project_path: dbt/project_transformation
-  downstream_blocks: []
-  executor_config: null
-  executor_type: local_python
-  has_callback: false
-  language: sql
-  name: dim_date
-  retry_config: null
-  status: executed
-  timeout: null
-  type: dbt
-  upstream_blocks: []
-  uuid: dbt/project_transformation/models/gold/dims/dim_date
+  uuid: silver_trigger
 cache_block_output_in_memory: false
 callbacks: []
 concurrency_config: {}

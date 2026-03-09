@@ -5,11 +5,11 @@ project_transformation:
 
     dev:
       type: postgres
-      host: postgres_2
-      user: root
-      password: root
-      port: 5432
-      dbname: source
+      host: {{ mage_secret_var('postgres_host') }}
+      user: {{ mage_secret_var('postgres_user') }}
+      password: {{ mage_secret_var('postgres_password') }}
+      port: {{ mage_secret_var('postgres_port') }}
+      dbname: {{ mage_secret_var('postgres_db') }}
       schema: analytics
       threads: 20
       

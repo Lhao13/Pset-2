@@ -19,15 +19,16 @@ def optimize_types(df):
 @transformer
 def load_and_export(partition_data, *args, **kwargs):
     # 1. DATOS DE LA PARTICIÓN
-    """
+
     year = partition_data['year']
     month = partition_data['month']
     service = partition_data['service']
-    """
 
+    """
     year = "2025"
     month = "06"
     service = "green"
+    """
     
     url = f'https://d37ci6vzurychx.cloudfront.net/trip-data/{service}_tripdata_{year}-{month}.parquet'
 

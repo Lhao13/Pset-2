@@ -3,6 +3,7 @@ from mage_ai.io.config import ConfigFileLoader
 from mage_ai.io.postgres import Postgres
 from pandas import DataFrame
 from os import path
+import requests
 
 if 'data_exporter' not in globals():
     from mage_ai.data_preparation.decorators import data_exporter
@@ -24,3 +25,23 @@ def export_data_to_postgres(df: DataFrame, **kwargs) -> None:
             index=False,  # Specifies whether to include index in exported table
             if_exists='replace',  # Specify resolution policy if table name already exists
         )
+
+    #llamada al trigger    
+    headers = {
+    'Content-Type': 'application/json',
+    }
+
+    json_data = {
+        'pipeline_run': {
+            'variables': {
+                'key1': 'value1',
+                'key2': 'value2',
+            },
+        },
+    }
+
+    response = requests.post(
+        'http://localhost:6789/api/pipeline_schedules/3/pipeline_runs/e6d4006167784638a4eaa2d9255161ba',
+        headers=headers,
+        json=json_data,
+    )
